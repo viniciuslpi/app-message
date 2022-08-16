@@ -7,7 +7,7 @@ router
     .get('/users/:id', UserController.getUser)
     .put('/users/:id', UserController.updateUser)
     .post('/users', UserController.createUser)
-
+    .delete('/users/:id', UserController.deleteUser)
 
 module.exports = router;
 

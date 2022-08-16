@@ -28,11 +28,11 @@ class UserController {
         const user = new users(req.body);
 
         user.save((err) => {
-            if(err){
-                res.status(500).send({ message: `${err.message} - falha ao cadastrar novo usuario.`})
+            if (err) {
+                res.status(500).send({ message: `${err.message} - falha ao cadastrar novo usuario.` })
             } else {
                 res.status(201).json(user);
-            }  
+            }
         });
     }
 
@@ -40,13 +40,24 @@ class UserController {
         const { id } = req.params;
 
         users.findByIdAndUpdate(id, { $set: req.body }, err => {
-            if(!err){
+            if (!err) {
                 res.status(200).send({ message: 'Usuario atualizado com sucesso' })
             } else {
                 res.status(500).send({ message: err.message })
             }
-        })
+        });
+    }
 
+    static deleteUser = (req, res) => {
+        const { id } = req.params;
+
+        users.findByIdAndDelete(id, err => {
+            if (!err) {
+                res.status(200).send({ message: `Usuario excluído com sucesso.` })
+            } else {
+                res.status(500).send({ message: `${err.message} - Não foi possível excluir o usuario.` })
+            }
+        })
     }
 
 
