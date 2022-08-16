@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://vini:123@node-cluster.xyldt.mongodb.net/app-message');
+mongoose.connect(process.env.MONGO_CONNECTION);
 
 module.exports = mongoose.connection;
