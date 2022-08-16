@@ -1,6 +1,6 @@
 const users = require('../models/User');
 
-class UserController {
+class UserControllerDAO {
 
     static getUsers = (req, res) => {
         users.find((err, users) => {
@@ -63,4 +63,4 @@ class UserController {
 
 }
 
-module.exports = UserController;
+module.exports = UserControllerDAO;
