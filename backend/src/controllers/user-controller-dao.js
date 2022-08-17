@@ -1,59 +1,52 @@
-const users = require('../models/User');
+const users = require('../models/user-dao');
 
 module.exports = {
-    create: user => {
+    create: async user => {
         const newUser = new users(user);
 
-        newUser.save((err) => {
-            if (err) {
-                res.status(500).send({ message: `${err.message} - falha ao cadastrar novo usuario.` })
-            } else {
-                res.status(201).json(newUser);
-            }
-        });
+        try {
+            await newUser.save();
+            return await newUser.findByEmail(user.email);
+        } catch (err) {
+            return `${err.message} - Falha ao cadastrar novo usuario.`
+        }
     },
     findByID: id => {
         users.findById(id).exec((err, users) => {
             if (err) {
-                res.status(400).send({ message: err.message });
+                return err.message;
             } else {
-                res.status(200).send(users);
+                return users;
             }
         });
     },
     list: () => {
         users.find((err, users) => {
             if (err) {
-                res.status(400).send({ message: err.message })
+                return err.message;
             } else {
-                res.status(200).json(users);
+                return users;
             }
         });
     },
-    findByEmail: email => {
-        users.findOne({ email }, (err, user) => {
-            if (err) {
-                res.status(400).send({ message: err.message });
-            } else {
-                res.status(200).json(user);
-            }
-        });
+    findByEmail: async email => {
+        return await users.findOne({ email });
     },
     update: user => {
         users.findByIdAndUpdate(user.id, { $set: user }, err => {
             if (!err) {
-                res.status(200).send({ message: 'Usuario atualizado com sucesso' })
+                return 'Usuario atualizado com sucesso';
             } else {
-                res.status(500).send({ message: err.message })
+                return err.message;
             }
         });
     },
     delete: id => {
         users.findByIdAndDelete(id, err => {
             if (!err) {
-                res.status(200).send({ message: `Usuario excluído com sucesso.` })
+                return `Usuario excluído com sucesso.`;
             } else {
-                res.status(500).send({ message: `${err.message} - Não foi possível excluir o usuario.` })
+                return `${err.message} - Não foi possível excluir o usuario.`;
             }
         });
     }

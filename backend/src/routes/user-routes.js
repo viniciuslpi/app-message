@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const UserController = require('../controllers/user-controller-dao');
-
+const UserController = require('../controllers/user-controller');
 router
-    .get('/users', UserController.getUsers)
-    .get('/users/:id', UserController.getUser)
-    .put('/users/:id', UserController.updateUser)
-    .post('/users', UserController.createUser)
-    .delete('/users/:id', UserController.deleteUser)
+    .post('/users', UserController.add)
+    //.get('/users/:id', UserController.getUser)
+    // .put('/users/:id', UserController.updateUser)
+    // .post('/users', UserController.createUser)
+    // .delete('/users/:id', UserController.deleteUser)
 
 module.exports = router;
 

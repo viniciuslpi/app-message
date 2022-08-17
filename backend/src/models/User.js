@@ -1,16 +1,42 @@
-const mongoose = require('mongoose');
+const usersDao = require('../controllers/user-controller-dao');
 
-const userSchema = new mongoose.Schema({
-    id: { type: String },
-    name: { type: String, required: true },
-    email: { type: String, required: true },
-    password: { type: String, required: true },
-    createdAt: { type: Date, required: false },
-    updatedAt: { type: Date, required: false }
-},
-{   versionKey: false });
 
-const users = mongoose.model('users', userSchema);
+class User {
+    constructor(user) {
+        this.name = user.name;
+        this.email = user.email;
+        //this.password = user.password;
+    }
 
-module.exports = users;
+    async add() {
+        if (await User.findByEmail(this.email)) {
+            throw new Error('This user already exists');
+        }
+        usersDao.create(this);
+    }
 
+    static findByID(id) {
+        const user = usersDao.findByID(id);
+        if (!user) return null;
+        return new User(user);
+    }
+
+    static async findByEmail(email) {
+        const user = await usersDao.findByEmail(email);
+        console.log(user)
+        if (!user) {
+            return null;
+        }
+        return new User(user);
+    }
+
+    static list() {
+        return usersDao.list();
+    }
+
+    addPassword(password) {
+        this.password = password;
+    }
+}
+
+module.exports = User;
