@@ -1,20 +1,18 @@
 const users = require('../models/User');
 
-class UserControllerDAO {
+module.exports = {
+    create: user => {
+        const newUser = new users(user);
 
-    static getUsers = (req, res) => {
-        users.find((err, users) => {
+        newUser.save((err) => {
             if (err) {
-                res.status(400).send({ message: err.message })
+                res.status(500).send({ message: `${err.message} - falha ao cadastrar novo usuario.` })
             } else {
-                res.status(200).json(users);
+                res.status(201).json(newUser);
             }
         });
-    }
-
-    static getUser = (req, res) => {
-        const { id } = req.params;
-
+    },
+    findByID: id => {
         users.findById(id).exec((err, users) => {
             if (err) {
                 res.status(400).send({ message: err.message });
@@ -22,45 +20,41 @@ class UserControllerDAO {
                 res.status(200).send(users);
             }
         });
-    }
-
-    static createUser = (req, res) => {
-        const user = new users(req.body);
-
-        user.save((err) => {
+    },
+    list: () => {
+        users.find((err, users) => {
             if (err) {
-                res.status(500).send({ message: `${err.message} - falha ao cadastrar novo usuario.` })
+                res.status(400).send({ message: err.message })
             } else {
-                res.status(201).json(user);
+                res.status(200).json(users);
             }
         });
-    }
-
-    static updateUser = (req, res) => {
-        const { id } = req.params;
-
-        users.findByIdAndUpdate(id, { $set: req.body }, err => {
+    },
+    findByEmail: email => {
+        users.findOne({ email }, (err, user) => {
+            if (err) {
+                res.status(400).send({ message: err.message });
+            } else {
+                res.status(200).json(user);
+            }
+        });
+    },
+    update: user => {
+        users.findByIdAndUpdate(user.id, { $set: user }, err => {
             if (!err) {
                 res.status(200).send({ message: 'Usuario atualizado com sucesso' })
             } else {
                 res.status(500).send({ message: err.message })
             }
         });
-    }
-
-    static deleteUser = (req, res) => {
-        const { id } = req.params;
-
+    },
+    delete: id => {
         users.findByIdAndDelete(id, err => {
             if (!err) {
                 res.status(200).send({ message: `Usuario excluído com sucesso.` })
             } else {
                 res.status(500).send({ message: `${err.message} - Não foi possível excluir o usuario.` })
             }
-        })
+        });
     }
-
-
 }
-
-module.exports = UserControllerDAO;
