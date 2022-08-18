@@ -30,8 +30,8 @@ class User {
         return new User(user);
     }
 
-    static list() {
-        return usersDao.list();
+    static async list() {
+        return await usersDao.list();
     }
 
     addPassword(password) {

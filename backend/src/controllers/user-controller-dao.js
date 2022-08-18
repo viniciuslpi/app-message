@@ -6,9 +6,9 @@ module.exports = {
 
         try {
             await newUser.save();
-            return await newUser.findByEmail(user.email);
+            //return await newUser.findByEmail(user.email);
         } catch (err) {
-            return `${err.message} - Falha ao cadastrar novo usuario.`
+            return `${err.message} - There is no possible create a new user.`
         }
     },
     findByID: id => {
@@ -20,14 +20,12 @@ module.exports = {
             }
         });
     },
-    list: () => {
-        users.find((err, users) => {
-            if (err) {
-                return err.message;
-            } else {
-                return users;
-            }
-        });
+    list: async () => {
+        try {
+            return await users.find();
+        } catch (err) {
+            return `${err.message} - Users not found.`
+        }
     },
     findByEmail: async email => {
         return await users.findOne({ email });
