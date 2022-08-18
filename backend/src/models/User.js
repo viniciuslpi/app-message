@@ -25,7 +25,6 @@ class User {
 
     static async findByEmail(email) {
         const user = await usersDao.findByEmail(email);
-        console.log(user)
         if (!user) {
             return null;
         }
@@ -38,6 +37,10 @@ class User {
 
     addPassword(password) {
         this.password = password;
+    }
+
+    static async update(id, user) {
+        return await usersDao.update(id, user);
     }
 
     static async delete(id) {

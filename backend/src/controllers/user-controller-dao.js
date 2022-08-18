@@ -15,35 +15,34 @@ module.exports = {
         try {
             return await users.findById(id).exec();
         } catch (err) {
-            return `${err.message} - User not found.`
+            return null;
         }
     },
     list: async () => {
         try {
             return await users.find();
         } catch (err) {
-            return `${err.message} - Users not found.`
+            throw new Error(err.message);
         }
     },
     findByEmail: async email => {
         return await users.findOne({ email });
     },
-    update: user => {
-        users.findByIdAndUpdate(user.id, { $set: user }, err => {
-            if (!err) {
-                return 'Usuario atualizado com sucesso';
-            } else {
-                return err.message;
-            }
-        });
+    update: async (id, user) => {
+        try {
+            await users.findByIdAndUpdate(id, { $set: user });
+            return 'Usuario atualizado com sucesso';
+        } catch (err) {
+            return `Não foi possível alterar o usuario.`;
+        }
     },
-    delete: id => {
-        users.findByIdAndDelete(id, err => {
-            if (!err) {
-                return `Usuario excluído com sucesso.`;
-            } else {
-                return `${err.message} - Não foi possível excluir o usuario.`;
-            }
-        });
+    delete: async id => {
+        try {
+            await users.findByIdAndDelete(id);
+            return `Usuario excluído com sucesso.`;
+        } catch (err) {
+            return `Não foi possível excluir o usuario.`;
+        }
+
     }
 }

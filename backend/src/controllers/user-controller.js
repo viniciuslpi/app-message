@@ -19,31 +19,44 @@ module.exports = {
             res.status(500).json({ error: err.message });
         }
     },
+
+
     async list(req, res) {
         const users = await User.list();
         if (users) {
             res.status(200).send(users);
         } else {
-            res.status(500).json({ erro: "There are no users" });
+            res.status(500).json({ erro: "There are no users." });
         }
     },
-<<<<<<< HEAD
-    async delete(req, res) {
-        try {
-            await User.delete(req.params.id);
-            res.status(200).send({ message: `User deleted.`})
-        } catch (err) {
-            res.status(500).send({ message: err.message })
-        }
 
-=======
+
     async findByID(req, res) {
         const user = await User.findByID(req.params.id);
         if (user) {
             res.status(200).send(user);
         } else {
-            res.status(500).json({ erro: "There are no user" });
+            res.status(500).json({ erro: "Usuario nao encontrado" });
         }
->>>>>>> 5fd96a74e19469786ae493400b3cac75e2e4d88f
+    },
+
+
+    async update(req, res) {
+        try {
+            const message = await User.update(req.params.id, req.body);
+            res.status(201).send({ message: message })
+        } catch (err) {
+            res.status().send({ message: err.message })
+        }
+    },
+
+
+    async delete(req, res) {
+        try {
+            const message = await User.delete(req.params.id);
+            res.status(200).send({ message: message })
+        } catch (err) {
+            res.status(500).send({ message: err.message })
+        }
     }
 }
