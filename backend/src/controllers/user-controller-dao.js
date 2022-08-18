@@ -11,14 +11,12 @@ module.exports = {
             return `${err.message} - There is no possible create a new user.`
         }
     },
-    findByID: id => {
-        users.findById(id).exec((err, users) => {
-            if (err) {
-                return err.message;
-            } else {
-                return users;
-            }
-        });
+    findByID: async id => {
+        try {
+            return await users.findById(id).exec();
+        } catch (err) {
+            return `${err.message} - User not found.`
+        }
     },
     list: async () => {
         try {

@@ -5,7 +5,7 @@ class User {
     constructor(user) {
         this.name = user.name;
         this.email = user.email;
-        //this.password = user.password;
+        this.password = user.password;
     }
 
     async add() {
@@ -15,9 +15,11 @@ class User {
         usersDao.create(this);
     }
 
-    static findByID(id) {
-        const user = usersDao.findByID(id);
-        if (!user) return null;
+    static async findByID(id) {
+        const user = await usersDao.findByID(id);
+        if (!user) {
+            return null;
+        }
         return new User(user);
     }
 
