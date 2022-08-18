@@ -1,4 +1,4 @@
-const users = require('../models/user-dao');
+const users = require('../models/User-dao');
 
 module.exports = {
     create: async user => {

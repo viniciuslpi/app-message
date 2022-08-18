@@ -37,6 +37,10 @@ class User {
     addPassword(password) {
         this.password = password;
     }
+
+    static async delete(id) {
+        return await usersDao.delete(id);
+    }
 }
 
 module.exports = User;

@@ -28,5 +28,14 @@ module.exports = {
         } else {
             res.status(500).json({ erro: "There are no users" });
         }
+    },
+    async delete(req, res) {
+        try {
+            await User.delete(req.params.id);
+            res.status(200).send({ message: `User deleted.`})
+        } catch (err) {
+            res.status(500).send({ message: err.message })
+        }
+
     }
 }
