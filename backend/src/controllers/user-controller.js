@@ -16,9 +16,7 @@ module.exports = {
             res.status(201).json();
 
         } catch (err) {
-            if (err) {
-                res.status(500).json({ error: err.message });
-            }
+            res.status(500).json({ error: err.message });
         }
     },
     async list(req, res) {
@@ -29,6 +27,7 @@ module.exports = {
             res.status(500).json({ erro: "There are no users" });
         }
     },
+<<<<<<< HEAD
     async delete(req, res) {
         try {
             await User.delete(req.params.id);
@@ -37,5 +36,14 @@ module.exports = {
             res.status(500).send({ message: err.message })
         }
 
+=======
+    async findByID(req, res) {
+        const user = await User.findByID(req.params.id);
+        if (user) {
+            res.status(200).send(user);
+        } else {
+            res.status(500).json({ erro: "There are no user" });
+        }
+>>>>>>> 5fd96a74e19469786ae493400b3cac75e2e4d88f
     }
 }
