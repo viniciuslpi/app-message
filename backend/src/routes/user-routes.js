@@ -8,9 +8,5 @@ router
     .put('/users/:id', UserController.update)
     .delete('/users/:id', UserController.delete)
 
-    //.get('/users/:id', UserController.getUser)
-    // .put('/users/:id', UserController.updateUser)
-    // .post('/users', UserController.createUser)
-
 module.exports = router;
 
