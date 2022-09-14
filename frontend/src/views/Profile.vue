@@ -1,9 +1,10 @@
 <template>
-    <h1>Perfil</h1>
+  <div class="profile">
+    <h1>This is a profile page</h1>
+  </div>
 </template>
 <script>
-
-export default ({
-    name: 'ProfileComponent'
-})
+export default {
+  name: 'ProfileView'
+}
 </script>

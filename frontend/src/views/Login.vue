@@ -1,9 +1,10 @@
 <template>
-  <h1>Login</h1>
+  <div class="login">
+    <h1>This is a login page</h1>
+  </div>
 </template>
 <script>
-
 export default {
-  name: "LoginComponent",
-};
+  name: 'LoginView'
+}
 </script>
