@@ -5,7 +5,7 @@ import Login from '../views/Login.vue'
 const routes = [
   {
     path: '/',
-    name: 'loginEnter',
+    name: 'enter',
     component: Login
   },
   {
@@ -33,4 +33,4 @@ const router = createRouter({
   routes
 })
 
-export default router
+export default router;
