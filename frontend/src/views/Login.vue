@@ -60,6 +60,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  flex-wrap: wrap;
   /* border: pink solid 1px; */
   width: 70%;
   height: 80vh;
