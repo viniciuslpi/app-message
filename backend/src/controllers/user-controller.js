@@ -41,12 +41,23 @@ module.exports = {
     },
 
 
+    async findByEmail(req, res) {
+
+        const user = await User.findByEmail(req.params.email);
+        if (user) {
+            res.status(200).send(user);
+        } else {
+            res.status(404).json({ erro: "Usuario nao encontrado" });
+        }
+    },
+
+
     async update(req, res) {
         try {
             const message = await User.update(req.params.id, req.body);
             res.status(201).send({ message: message })
         } catch (err) {
-            res.status().send({ message: err.message })
+            res.status(500).send({ message: err.message })
         }
     },
 
