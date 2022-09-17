@@ -5,7 +5,7 @@
         <h1 class="login-title">Welcome to App Message!</h1>
         <p>Share messages with your friends...</p>
       </div>
-      <form class="block block-form" @submit="loginForm">
+      <form class="block block-form" @submit="doLogin">
         <div class="field">
           <p class="control has-icons-left has-icons-right">
             <input
