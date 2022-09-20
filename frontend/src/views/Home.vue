@@ -2,14 +2,12 @@
   <div class="home columns">
     <ProfileBlock />
     <div class="column is-two-quarters">
-      <CreatePost />
+      <CreatePost @onCreatePost="getPosts"/>
       <section class="title-section">
         <h2 class="title is-2">Recent posts</h2>
       </section>
-      <section class="card">
-        <Post />
-        <Post />
-        <Post />
+      <section class="card reverseorder">
+        <Post v-for="(post, index) in posts" :key="index" :post="post" />
       </section>
     </div>
     <ProfileBlock />
@@ -20,6 +18,7 @@
 import Post from "@/components/Post.vue";
 import CreatePost from "@/components/CreatePost.vue";
 import ProfileBlock from "@/components/ProfileBlock.vue";
+import axios from "axios";
 
 export default {
   name: "HomeView",
@@ -27,14 +26,33 @@ export default {
     Post,
     CreatePost,
     ProfileBlock,
-},
+  },
+  data() {
+    return {
+      posts: []
+    }
+  },
+  mounted() {
+    this.getPosts();
+  },
+
+  methods: {
+    async getPosts() {
+      const url = `http://localhost:3000/posts`;
+      try {
+        const { data } = await axios.get(url);
+        this.posts = data;
+      } catch (error) {
+        console.log(error.response.data);
+      }
+    },
+  }
 };
 </script>
 
 <style scoped>
 .home {
   width: 70%;
-  /* border: 1px solid black; */
   margin: 50px auto;
 }
 
@@ -50,5 +68,10 @@ export default {
 
 .card {
   border-radius: 20px;
+}
+
+.reverseorder {
+  display: flex;
+  flex-direction: column-reverse;
 }
 </style>

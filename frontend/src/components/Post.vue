@@ -3,16 +3,14 @@
     <article class="media">
       <figure class="media-left">
         <p class="image is-64x64">
-          <img
-            :src="post.user.userImg"
-            class="image-user"
-          />
+          <img :src="post.user.userImg" class="image-user" />
         </p>
       </figure>
       <div class="media-content">
         <div class="content">
           <p>
-            <strong>{{ post.user.name }}</strong> <small>{{ post.user.nickName }}</small>
+            <strong>{{ post.user.name }}</strong>
+            <small>{{ post.user.nickName }}</small>
             <small>31m</small>
             <br />
             {{ post.description }}
@@ -33,25 +31,22 @@
         </nav>
       </div>
     </article>
+    <div class="divide-card"></div>
   </div>
-  <div class="divide-card"></div>
 </template>
 <script>
 export default {
   name: "PostComponent",
-  data() {
-    return {
-      post: {
-        user: {
-          name: "John Smith",
-          nickName: "@johnsmith",
-          userImg: "https://pbs.twimg.com/profile_images/697111425529962496/FxgO6Crg_400x400.jpg",
+  props: {
+    post: {
+      description: String,
+      date: Date,
+      user: {
+          name: String,
+          nickName: String,
+          userImg: String,
         },
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.",
-        date: new Date(),
-      },
-    };
+    },
   },
 };
 </script>

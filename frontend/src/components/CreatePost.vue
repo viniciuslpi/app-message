@@ -14,17 +14,48 @@
           class="input is-rounded"
           type="text"
           placeholder="Share something with your friends..."
+          v-model="newPost"
         />
       </div>
       <div class="pos-input-section">
-        <button class="button is-primary is-rounded is-fullwidth">Send</button>
+        <button class="button is-primary is-rounded is-fullwidth" @click="createPost">Send</button>
       </div>
     </section>
   </div>
 </template>
 <script>
+import axios from "axios";
+
 export default {
-    name: 'CreatePostComponent'
+    name: 'CreatePostComponent',
+    data() {
+      return {
+        newPost: null
+      }
+    },
+    emits: ['updatePost'],
+    methods: {
+      async createPost() {
+        
+        const url = 'http://localhost:3000/posts'
+        const post = {
+          description: this.newPost,
+          date: new Date().toString(),
+          user: "62fec5dcecc427f323f77f8c"
+        }
+
+        try {
+          const res = await axios.post(url, post);
+          setTimeout(() => {
+            this.$emit('onCreatePost');
+          }, 500);
+          console.log(res.data);
+        } catch (error) {
+          console.log(error)
+        }
+        this.newPost = '';
+      }
+    }
 };
 </script>
 <style scope>
