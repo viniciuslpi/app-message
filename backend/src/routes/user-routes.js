@@ -10,4 +10,3 @@ router
     .delete('/users/:id', UserController.delete)
 
 module.exports = router;
-

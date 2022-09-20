@@ -5,8 +5,9 @@ const userSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
-    createdAt: { type: Date, required: false },
-    updatedAt: { type: Date, required: false }
+    nickName: { type: String, required: true },
+    userImg: { type: String, required: false },
+    posts:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'posts', required: true }]
 },
 {   versionKey: false });
 

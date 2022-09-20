@@ -6,6 +6,9 @@ class User {
         this.name = user.name;
         this.email = user.email;
         this.password = user.password;
+        this.nickName = user.nickName;
+        this.posts = user.posts;
+        this.userImg = user.userImg;
     }
 
     async add() {

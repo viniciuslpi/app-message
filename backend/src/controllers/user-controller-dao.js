@@ -26,7 +26,12 @@ module.exports = {
         }
     },
     findByEmail: async email => {
-        return await users.findOne({ email });
+        try {
+            const user = await users.findOne({ email }).populate('posts', 'description').exec();
+            return user;
+        } catch (err) {
+            return null;
+        }
     },
     update: async (id, user) => {
         try {

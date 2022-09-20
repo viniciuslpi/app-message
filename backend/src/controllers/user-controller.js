@@ -1,7 +1,7 @@
 const User = require('../models/user');
 
 module.exports = {
-    async add(req, res) {
+    async add(req, res) { //refatorar
         const { name, email, password } = req.body;
 
         try {
@@ -21,7 +21,7 @@ module.exports = {
     },
 
 
-    async list(req, res) {
+    async list(req, res) { //refatorar
         const users = await User.list();
         if (users) {
             res.status(200).send(users);
@@ -31,7 +31,7 @@ module.exports = {
     },
 
 
-    async findByID(req, res) {
+    async findByID(req, res) { //refatorar
         const user = await User.findByID(req.params.id);
         if (user) {
             res.status(200).send(user);
@@ -41,18 +41,18 @@ module.exports = {
     },
 
 
-    async findByEmail(req, res) {
+    async findByEmail(req, res) { //refatorar
 
-        const user = await User.findByEmail(req.params.email);
-        if (user) {
+        try {
+            const user = await User.findByEmail(req.params.email);
             res.status(200).send(user);
-        } else {
+        } catch (err) {
             res.status(404).json({ erro: "Usuario nao encontrado" });
         }
     },
 
 
-    async update(req, res) {
+    async update(req, res) { //refatorar
         try {
             const message = await User.update(req.params.id, req.body);
             res.status(201).send({ message: message })
@@ -62,7 +62,7 @@ module.exports = {
     },
 
 
-    async delete(req, res) {
+    async delete(req, res) { //refatorar
         try {
             const message = await User.delete(req.params.id);
             res.status(200).send({ message: message })
