@@ -47,4 +47,8 @@ export default {
 .title-section {
   margin-bottom: 1em;
 }
+
+.card {
+  border-radius: 20px;
+}
 </style>
