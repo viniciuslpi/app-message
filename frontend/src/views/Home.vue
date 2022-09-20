@@ -35,7 +35,6 @@ export default {
   mounted() {
     this.getPosts();
   },
-
   methods: {
     async getPosts() {
       const url = `http://localhost:3000/posts`;

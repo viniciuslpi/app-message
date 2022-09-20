@@ -53,7 +53,6 @@ export default {
 <style scoped>
 .media {
   padding: 10px;
-  /* border: 1px solid red; */
   overflow: hidden;
 }
 
