@@ -1,16 +1,18 @@
 <template>
-  <div class="home columns">
-    <ProfileBlock />
-    <div class="column is-two-quarters">
-      <CreatePost @onCreatePost="getPosts"/>
-      <section class="title-section">
-        <h2 class="title is-2">Recent posts</h2>
-      </section>
-      <section class="card reverseorder">
-        <Post v-for="(post, index) in posts" :key="index" :post="post" />
-      </section>
+  <div class="home">
+    <div class="columns home-container">
+      <ProfileBlock />
+      <div class="column is-two-quarters">
+        <CreatePost @onCreatePost="getPosts" />
+        <section class="title-section">
+          <h2 class="title is-2">Recent posts</h2>
+        </section>
+        <section class="card reverseorder">
+          <Post v-for="(post, index) in posts" :key="index" :post="post" />
+        </section>
+      </div>
+      <ProfileBlock />
     </div>
-    <ProfileBlock />
   </div>
 </template>
 
@@ -29,8 +31,8 @@ export default {
   },
   data() {
     return {
-      posts: []
-    }
+      posts: [],
+    };
   },
   mounted() {
     this.getPosts();
@@ -45,14 +47,19 @@ export default {
         console.log(error.response.data);
       }
     },
-  }
+  },
 };
 </script>
 
 <style scoped>
 .home {
-  width: 70%;
-  margin: 50px auto;
+  padding: 50px 0;
+  background: rgb(238, 238, 238);
+}
+
+.home-container {
+  width: 80%;
+  margin: 0 auto;
 }
 
 .title {

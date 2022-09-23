@@ -10,7 +10,7 @@
         <div class="content">
           <p>
             <strong>{{ post.user.name }}</strong>
-            <small>{{ post.user.nickName }}</small>
+            <small class="nick-space">{{ post.user.nickName }}</small>
             <small>31m</small>
             <br />
             {{ post.description }}
@@ -59,11 +59,14 @@ export default {
 .image-user {
   border-radius: 50px;
 }
-
 .divide-card {
   width: 80%;
   margin: 10px auto;
   height: 1px;
   background-color: #ccc;
 }
+.nick-space {
+  padding-left: 5px;
+}
+
 </style>
