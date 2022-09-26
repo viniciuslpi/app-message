@@ -42,10 +42,10 @@ export default {
       description: String,
       date: Date,
       user: {
-          name: String,
-          nickName: String,
-          userImg: String,
-        },
+        name: String,
+        nickName: String,
+        userImg: String,
+      },
     },
   },
 };
@@ -68,5 +68,4 @@ export default {
 .nick-space {
   padding-left: 5px;
 }
-
 </style>

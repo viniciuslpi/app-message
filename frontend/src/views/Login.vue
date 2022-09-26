@@ -118,13 +118,11 @@ export default {
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
-  /* border: pink solid 1px; */
   width: 70%;
   height: 80vh;
 }
 
 .block {
-  /* border: solid 1px red; */
   margin: 20px;
   width: 500px;
 }

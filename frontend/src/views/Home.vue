@@ -54,7 +54,7 @@ export default {
 <style scoped>
 .home {
   padding: 50px 0;
-  background: rgb(238, 238, 238);
+  background: rgb(241, 241, 241);
 }
 
 .home-container {

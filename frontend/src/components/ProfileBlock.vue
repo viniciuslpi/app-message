@@ -22,11 +22,11 @@
         </div>
       </div>
       <div class="view-block">
-        <a href="#">
+        <router-link to="/profile">
           <strong>
             <small> View my profile </small>
           </strong>
-        </a>
+        </router-link>
       </div>
     </article>
   </div>
