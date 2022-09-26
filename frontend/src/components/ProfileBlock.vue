@@ -21,19 +21,23 @@
           <p><small>Posts</small></p>
         </div>
       </div>
-      <div class="view-block">
-        <router-link to="/profile">
-          <strong>
-            <small> View my profile </small>
-          </strong>
-        </router-link>
-      </div>
+      <ProfileBlockLink :url="infoUrl" />
     </article>
   </div>
 </template>
 <script>
+import ProfileBlockLink from "../components/ProfileBlockLink.vue";
+
 export default {
   name: "ProfileBlockComponent",
+  components: {
+    ProfileBlockLink,
+  },
+  data() {
+    return {
+      infoUrl: window.location.pathname,
+    };
+  },
 };
 </script>
 <style scoped>
@@ -81,9 +85,5 @@ export default {
   width: 50%;
   padding: 10px;
   text-align: center;
-}
-
-.view-block {
-  padding: 10px;
 }
 </style>

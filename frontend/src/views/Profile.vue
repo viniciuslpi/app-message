@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="columns home-container">
-      <ProfileBlock />
+      <ProfileBlock/>
       <div class="column is-two-quarters">
         <About />
         <section class="title-section">
@@ -11,7 +11,7 @@
           <Post v-for="(post, index) in posts" :key="index" :post="post" />
         </section>
       </div>
-      <ProfileBlock />
+      <ProfileBlock/>
     </div>
   </div>
 </template>
@@ -27,11 +27,11 @@ export default {
   components: {
     Post,
     ProfileBlock,
-    About
+    About,
   },
   data() {
     return {
-      posts: [],
+      posts: []
     };
   },
   mounted() {
