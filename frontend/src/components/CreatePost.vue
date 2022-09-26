@@ -46,9 +46,10 @@ export default {
 
         try {
           const res = await axios.post(url, post);
-          setTimeout(() => {
-            this.$emit('onCreatePost');
-          }, 0);
+          // setTimeout(() => {
+          //   this.$emit('onCreatePost');
+          // }, 0);
+          this.$emit('onCreatePost');
           console.log(res.data);
         } catch (error) {
           console.log(error)

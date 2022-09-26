@@ -3,13 +3,13 @@
     <article class="media card">
       <div class="image">
         <img
-          src="https://i1.sndcdn.com/artworks-000077786050-ofxfwl-t500x500.jpg"
+          :src="user.userImg"
           class="image-user"
         />
       </div>
       <div class="user-block">
-        <p><strong>John Doe</strong></p>
-        <p><small>Software Developer</small></p>
+        <p><strong>{{ user.name }}</strong></p>
+        <p><small>{{ user.headline }}</small></p>
       </div>
       <div class="media-content info-block">
         <div class="info">
@@ -17,7 +17,7 @@
           <p><small>Friends</small></p>
         </div>
         <div class="info">
-          <p><strong>65</strong></p>
+          <p><strong>{{ user.posts.length }}</strong></p>
           <p><small>Posts</small></p>
         </div>
       </div>
@@ -36,8 +36,9 @@ export default {
   data() {
     return {
       infoUrl: window.location.pathname,
+      user: this.$store.state.user,
     };
-  },
+  }
 };
 </script>
 <style scoped>
