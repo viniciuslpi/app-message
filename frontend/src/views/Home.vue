@@ -32,10 +32,13 @@ export default {
   data() {
     return {
       posts: [],
+      user: {}
     };
   },
   mounted() {
     this.getPosts();
+    // this.user = this.$store.state.user
+    // console.log(this.user)
   },
   methods: {
     async getPosts() {
@@ -48,6 +51,9 @@ export default {
       }
     },
   },
+  created() {
+    // this.$store.dispatch('getUserContent');
+  }
 };
 </script>
 
