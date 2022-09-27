@@ -4,8 +4,8 @@ module.exports = {
     create: async (req, res) => { // Refatorar
         const newPost = new posts(req.body);
         try {
-            await newPost.save();
-            res.status(201).json({ message: `Um post novo foi criado`})
+            const response = await newPost.save();
+            res.status(201).json({ message: response })
         } catch (err) {
             res.status(500).json({ message: `${err.message}: Nao foi possivel criar um post`})
         }

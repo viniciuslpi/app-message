@@ -18,7 +18,12 @@
         />
       </div>
       <div class="pos-input-section">
-        <button class="button is-primary is-rounded is-fullwidth" @click="createPost">Send</button>
+        <button
+          class="button is-primary is-rounded is-fullwidth"
+          @click="createPost"
+        >
+          Send
+        </button>
       </div>
     </section>
   </div>
@@ -27,40 +32,37 @@
 import axios from "axios";
 
 export default {
-    name: 'CreatePostComponent',
-    data() {
-      return {
-        newPost: null
-      }
-    },
-    emits: ['updatePost'],
-    methods: {
-      async createPost() {
-        
-        const url = 'http://localhost:3000/posts'
-        const post = {
-          description: this.newPost,
-          date: new Date().toString(),
-          user: "62fec5dcecc427f323f77f8c"
-        }
+  name: "CreatePostComponent",
+  data() {
+    return {
+      newPost: null,
+    };
+  },
+  emits: ["updatePost"],
+  methods: {
+    async createPost() {
+      const post = {
+        description: this.newPost,
+        date: new Date().toString(),
+        user: "62fec5dcecc427f323f77f8c",
+      };
 
-        try {
-          const res = await axios.post(url, post);
-          // setTimeout(() => {
-          //   this.$emit('onCreatePost');
-          // }, 0);
-          this.$emit('onCreatePost');
-          console.log(res.data);
-        } catch (error) {
-          console.log(error)
-        }
-        this.newPost = '';
+      try {
+        const res = await axios.post("http://localhost:3000/posts", post);
+        const postID = res.data.message._id;
+        await axios.put(`http://localhost:3000/users/${post.user}/posts`, {
+          post: postID,
+        });
+        this.$emit("onCreatePost");
+      } catch (error) {
+        console.log(error);
       }
-    }
+      this.newPost = "";
+    },
+  },
 };
 </script>
 <style scope>
-
 .image-user {
   border-radius: 50px;
 }

@@ -46,6 +46,18 @@ class User {
         return await usersDao.update(id, user);
     }
 
+    static async findByIDAndInsert(id, post) {
+        return await usersDao.findByIdAndInsert(id, post);
+    }
+
+    static async findByIDAndListPosts (id) {
+        const user = await usersDao.findByIDAndListPosts(id);
+        if (!user) {
+            return null;
+        }
+        return new User(user);
+    }
+
     static async delete(id) {
         return await usersDao.delete(id);
     }

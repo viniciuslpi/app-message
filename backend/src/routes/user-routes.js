@@ -7,6 +7,12 @@ router
     .get('/users/:id', UserController.findByID)
     .get('/users/email/:email', UserController.findByEmail)
     .put('/users/:id', UserController.update)
+    
+    .put('/users/:id/posts', UserController.addPost)
+    .get('/users/:id/posts', UserController.findByIDAndListPosts)
+    // delete user post
+    // update user post
+
     .delete('/users/:id', UserController.delete)
 
 module.exports = router;

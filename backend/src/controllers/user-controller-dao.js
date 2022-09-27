@@ -41,6 +41,23 @@ module.exports = {
             return `Não foi possível alterar o usuario.`;
         }
     },
+    findByIdAndInsert: async (id, posts) => {
+        try {
+            await users.findByIdAndUpdate(id, { $push: { posts } });
+            return 'Post inserido no usuário';
+        } catch (err) {
+            return `Não foi possível inserir post no usuario.`;
+        }
+    },
+    findByIDAndListPosts: async id => {
+        try {
+            return await users.findById(id)
+                               .populate('posts')
+                               .exec();
+        } catch (err) {
+            return null;
+        }
+    },
     delete: async id => {
         try {
             await users.findByIdAndDelete(id);
