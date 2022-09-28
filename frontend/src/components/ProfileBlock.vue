@@ -17,7 +17,7 @@
           <p><small>Friends</small></p>
         </div>
         <div class="info">
-          <p><strong>{{ user.posts }}</strong></p>
+          <p><strong>{{ user.posts.length }}</strong></p>
           <p><small>Posts</small></p>
         </div>
       </div>
@@ -40,9 +40,7 @@ export default {
     };
   },
   created() {
-    this.$store.dispatch('getUserContent');
     this.user = this.$store.state.user
-    console.log(this.user)
   }
 };
 </script>

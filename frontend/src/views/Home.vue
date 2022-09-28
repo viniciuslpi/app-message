@@ -37,8 +37,6 @@ export default {
   },
   mounted() {
     this.getPosts();
-    // this.user = this.$store.state.user
-    // console.log(this.user)
   },
   methods: {
     async getPosts() {
@@ -50,9 +48,6 @@ export default {
         console.log(error.response.data);
       }
     },
-  },
-  created() {
-    // this.$store.dispatch('getUserContent');
   }
 };
 </script>

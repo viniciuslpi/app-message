@@ -87,6 +87,7 @@ export default {
         const { data } = await axios.get(url);
         if(this.verifyUser(user, data)) {
           console.log(data);
+          this.$store.commit('userContent', data)
           this.$router.push("/home");
         } else {
           this.incorrect = true;
