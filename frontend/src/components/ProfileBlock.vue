@@ -2,14 +2,15 @@
   <div class="profile-block">
     <article class="media card">
       <div class="image">
-        <img
-          :src="user.userImg"
-          class="image-user"
-        />
+        <img :src="user.userImg" class="image-user" />
       </div>
       <div class="user-block">
-        <p><strong>{{ user.name }}</strong></p>
-        <p><small>{{ user.headline }}</small></p>
+        <p>
+          <strong>{{ user.name }}</strong>
+        </p>
+        <p>
+          <small>{{ user.headline }}</small>
+        </p>
       </div>
       <div class="media-content info-block">
         <div class="info">
@@ -17,7 +18,9 @@
           <p><small>Friends</small></p>
         </div>
         <div class="info">
-          <p><strong>{{ user.posts }}</strong></p>
+          <p>
+            <strong>{{ user.posts }}</strong>
+          </p>
           <p><small>Posts</small></p>
         </div>
       </div>
@@ -36,13 +39,12 @@ export default {
   data() {
     return {
       infoUrl: window.location.pathname,
-      user: {},
+      user: this.$store.state.user
     };
   },
   created() {
     this.$store.dispatch('getUserContent');
-    this.user = this.$store.state.user
-    console.log(this.user)
+    console.log(this.user.posts );
   }
 };
 </script>

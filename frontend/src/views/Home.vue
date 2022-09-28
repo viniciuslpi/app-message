@@ -5,7 +5,7 @@
       <div class="column is-two-quarters">
         <CreatePost @onCreatePost="getPosts" />
         <section class="title-section">
-          <h2 class="title is-2">Recent posts</h2>
+          <h2 class="title is-2">Latest posts</h2>
         </section>
         <section class="card reverseorder">
           <Post v-for="(post, index) in posts" :key="index" :post="post" />
@@ -32,13 +32,10 @@ export default {
   data() {
     return {
       posts: [],
-      user: {}
     };
   },
   mounted() {
     this.getPosts();
-    // this.user = this.$store.state.user
-    // console.log(this.user)
   },
   methods: {
     async getPosts() {
@@ -50,9 +47,6 @@ export default {
         console.log(error.response.data);
       }
     },
-  },
-  created() {
-    // this.$store.dispatch('getUserContent');
   }
 };
 </script>

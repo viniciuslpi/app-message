@@ -86,7 +86,7 @@ export default {
       try {
         const { data } = await axios.get(url);
         if(this.verifyUser(user, data)) {
-          console.log(data);
+          // console.log(data);
           this.$router.push("/home");
         } else {
           this.incorrect = true;
