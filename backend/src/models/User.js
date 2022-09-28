@@ -7,6 +7,7 @@ class User {
         this.email = user.email;
         this.password = user.password;
         this.nickName = user.nickName;
+        this.headline = user.headline;
         this.posts = user.posts;
         this.userImg = user.userImg;
     }
