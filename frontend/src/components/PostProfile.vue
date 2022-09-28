@@ -3,14 +3,14 @@
     <article class="media">
       <figure class="media-left">
         <p class="image is-64x64">
-          <img :src="post.user.userImg" class="image-user" />
+          <img :src="user.userImg" class="image-user" />
         </p>
       </figure>
       <div class="media-content">
         <div class="content">
           <p>
-            <strong>{{ post.user.name }}</strong>
-            <small class="nick-space">{{ post.user.nickName }}</small>
+            <strong>{{ user.name }}</strong>
+            <small class="nick-space">{{ user.nickName }}</small>
             <small>31m</small>
             <br />
             {{ post.description }}
@@ -36,13 +36,13 @@
 </template>
 <script>
 export default {
-  name: "PostComponent",
+  name: "PostProfileComponent",
   props: {
     post: {
       description: String,
-      date: Date,
-      user: {}
+      date: Date
     },
+    user: {}
   }
 };
 </script>

@@ -42,9 +42,6 @@ export default {
       user: this.$store.state.user,
     };
   },
-  created() {
-    this.user = this.$store.state.user;
-  },
 };
 </script>
 <style scoped>

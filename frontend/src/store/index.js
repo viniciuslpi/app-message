@@ -13,14 +13,6 @@ export default createStore({
     }
   },
   actions: {
-    // async getUserContent(context) {
-    //   try {
-    //     const response = await axios.get('http://localhost:3000/users/62fec5dcecc427f323f77f8c')
-    //     context.commit('getUserContent', response.data);
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    // }
   },
   modules: {
   }

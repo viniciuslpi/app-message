@@ -1,22 +1,23 @@
 <template>
   <div class="home">
     <div class="columns home-container">
-      <ProfileBlock/>
+      <ProfileBlock />
       <div class="column is-two-quarters">
         <About />
         <section class="title-section">
           <h2 class="title is-6">Last posts</h2>
         </section>
         <section class="card reverseorder">
-          <Post v-for="(post, index) in posts" :key="index" :post="post" />
+          <PostProfile v-for="(post, index) in posts" :key="index" :post="post" :user="user" />
         </section>
       </div>
-      <ProfileBlock/>
+      <ProfileBlock />
     </div>
   </div>
 </template>
 <script>
-import Post from "@/components/Post.vue";
+// import Post from "@/components/Post.vue";
+import PostProfile from "@/components/PostProfile.vue";
 import ProfileBlock from "@/components/ProfileBlock.vue";
 import About from "@/components/About.vue";
 
@@ -25,13 +26,14 @@ import axios from "axios";
 export default {
   name: "ProfileView",
   components: {
-    Post,
+    PostProfile,
     ProfileBlock,
-    About,
+    About
   },
   data() {
     return {
-      posts: []
+      posts: [],
+      user: this.$store.state.user
     };
   },
   mounted() {
@@ -39,7 +41,7 @@ export default {
   },
   methods: {
     async getPosts() {
-      const url = `http://localhost:3000/posts`;
+      const url = `http://localhost:3000/users/${this.user.id}/posts`;
       try {
         const { data } = await axios.get(url);
         this.posts = data;

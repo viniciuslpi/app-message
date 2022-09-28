@@ -4,7 +4,7 @@
       <div class="pos-input-section">
         <p class="image">
           <img
-            src="https://bulma.io/images/placeholders/128x128.png"
+            :src="user.userImg"
             class="image-user"
           />
         </p>
@@ -36,6 +36,7 @@ export default {
   data() {
     return {
       newPost: null,
+      user: this.$store.state.user
     };
   },
   emits: ["updatePost"],
@@ -44,9 +45,8 @@ export default {
       const post = {
         description: this.newPost,
         date: new Date().toString(),
-        user: "62fec5dcecc427f323f77f8c",
+        user: this.user.id
       };
-
       try {
         const res = await axios.post("http://localhost:3000/posts", post);
         const postID = res.data.message._id;

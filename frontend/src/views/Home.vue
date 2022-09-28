@@ -47,7 +47,7 @@ export default {
         console.log(error.response.data);
       }
     },
-  }
+  },
 };
 </script>
 
